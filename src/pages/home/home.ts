@@ -34,7 +34,6 @@ export class HomePage {
       }
     });
   }
-
   downloadImage(image) {
 
     this.platform.ready().then(() => {
@@ -44,15 +43,15 @@ export class HomePage {
       const imageLocation = `${cordova.file.applicationDirectory}www/assets/img/${image}`;
 
       fileTransfer.download(imageLocation, this.storageDirectory + image).then((entry) => {
+
         const alertSuccess = this.alertCtrl.create({
           title: `Download Succeeded!`,
           subTitle: `${image} was successfully downloaded to: ${entry.toURL()}`,
           buttons: ['Ok']
         });
+
         alertSuccess.present();
-        this.fileOpener.open(entry.toURL(), 'application/pdf')
-        .then(() => console.log('File is opened'))
-        .catch(e => console.log('Error openening file', e));
+
       }, (error) => {
 
         const alertFailure = this.alertCtrl.create({
@@ -68,6 +67,40 @@ export class HomePage {
     });
 
   }
+
+  // downloadImage(image) {
+
+  //   this.platform.ready().then(() => {
+
+  //     const fileTransfer: TransferObject = this.transfer.create();
+
+  //     const imageLocation = `${cordova.file.applicationDirectory}www/assets/img/${image}`;
+
+  //     fileTransfer.download(imageLocation, this.storageDirectory + image).then((entry) => {
+  //       const alertSuccess = this.alertCtrl.create({
+  //         title: `Download Succeeded!`,
+  //         subTitle: `${image} was successfully downloaded to: ${entry.toURL()}`,
+  //         buttons: ['Ok']
+  //       });
+  //       alertSuccess.present();
+  //       this.fileOpener.open(entry.toURL(), 'application/pdf')
+  //       .then(() => console.log('File is opened'))
+  //       .catch(e => console.log('Error openening file', e));
+  //     }, (error) => {
+
+  //       const alertFailure = this.alertCtrl.create({
+  //         title: `Download Failed!`,
+  //         subTitle: `${image} was not successfully downloaded. Error code: ${error.code}`,
+  //         buttons: ['Ok']
+  //       });
+
+  //       alertFailure.present();
+
+  //     });
+
+  //   });
+
+  // }
 
   retrieveImage(image) {
 
